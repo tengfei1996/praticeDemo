@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.OdBusiNotelogDAO">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.demo.model.OdBusiNotelog">
+        <id column="id" property="id" />
+        <result column="note_type" property="noteType" />
+        <result column="relation_id" property="relationId" />
+        <result column="note" property="note" />
+        <result column="version" property="version" />
+        <result column="user_name" property="userName" />
+        <result column="modify_date" property="modifyDate" />
+        <result column="create_date" property="createDate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, note_type, relation_id, note, version, user_name, modify_date, create_date
+    </sql>
+
+</mapper>
