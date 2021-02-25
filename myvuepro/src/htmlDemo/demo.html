@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>select下拉框</title>
+</head>
+<body>
+<!--双向绑定-->
+  <div id="app">
+    输入的值：<input type="text" v-model="message">{{message}}<br/>
+    <select v-model="selected">
+      <option  selected>--请选择--</option>
+      <option v-for="stu in study" :value="stu.value">{{stu.math}}</option>
+    </select>
+    <p>{{selected}}</p>
+  </div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  var vm = new Vue({
+    el: '#app',
+    data: {
+      message: '',
+      selected: '',
+      study: [
+        {math: 'a',value: '1'},
+        {math: 'b',value: '2'},
+        {math: 'c',value: '3'}
+      ]
+    }
+  });
+</script>
+
+</html>

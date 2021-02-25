@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件通信-自定义事件</title>
+</head>
+<body>
+  <div id="app">
+    <p v-model="total">总数{{ total }}</p>
+    <my-component 
+      @increase="handleGetTotal" 
+      @reduce="handleGetTotal" :count="total"></my-component>
+  </div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  Vue.component('my-component',{
+    props: ['count'],//props父组件传参给子组件
+    template: 
+    '\<div>\
+        <button @click = "handleIncrease">+1</button>\
+        <button @click = "handleReduce" :disabled="count===0">-1</button>\
+    </div>',
+    data: function (){
+        return {
+          counter: 0
+        }
+    },
+    methods: {
+      handleIncrease: function (){
+        this.counter++;
+        this.$emit('increase',this.counter);//通过$emit将数据传给父组件
+      },
+      handleReduce: function (){
+        this.counter--;
+        this.$emit('reduce',this.counter);
+      }
+    }
+  });
+  var vm = new Vue({
+    el: '#app',
+    data: {
+      total: 0
+    },
+    methods: {
+      handleGetTotal: function (total){
+        this.total = total;
+      }
+    }
+  });
+</script>
+
+</html>
