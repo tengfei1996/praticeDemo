@@ -19,4 +19,7 @@
         id, note_type, relation_id, note, version, user_name, modify_date, create_date
     </sql>
 
+    <select id="getPagingList" resultType="com.example.demo.model.OdBusiNotelog">
+        select <include refid="Base_Column_List"/> from od_busi_notelog
+    </select>
 </mapper>

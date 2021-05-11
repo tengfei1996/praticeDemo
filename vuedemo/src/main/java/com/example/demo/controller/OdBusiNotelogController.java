@@ -2,13 +2,12 @@ package com.example.demo.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.example.demo.model.OdBusiNotelog;
+import com.example.demo.model.common.PagingParams;
 import com.example.demo.model.common.ResponseModel;
 import com.example.demo.service.OdBusiNotelogService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -25,9 +24,9 @@ public class OdBusiNotelogController {
     @Autowired
     OdBusiNotelogService odBusiNotelogService;
 
-    @GetMapping("/getTableData")
-    public ResponseModel getTableData(){
-        return new ResponseModel(odBusiNotelogService.list(new QueryWrapper<>()));
+    @PostMapping("/getTableData")
+    public ResponseModel getTableData(@RequestBody PagingParams<OdBusiNotelog> pagingParams){
+        return new ResponseModel(odBusiNotelogService.getOdBusiNotelogPaingList(pagingParams));
     }
 }
 

@@ -1,7 +1,10 @@
 package com.example.demo.dao;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.demo.model.OdBusiNotelog;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface OdBusiNotelogDAO extends BaseMapper<OdBusiNotelog> {
 
+    List<OdBusiNotelog> getPagingList(Page<OdBusiNotelog> page);
 }
