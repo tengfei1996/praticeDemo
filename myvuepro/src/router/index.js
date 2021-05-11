@@ -23,6 +23,15 @@ export default new Router({
                 hideInMenu: true,
               },
             component: () => import('@/views/content.vue')
+        },
+        {
+            path: '/navigation',
+            name: 'navigation',
+            meta: {
+                title: 'navigation - 侧栏',
+                hideInMenu: 'true'
+            },
+            component: () => import('@/views/navigation.vue')
         }
     ]
 })

@@ -8,10 +8,11 @@ export default{
       data: data
     })
   },
-  getTableData: () => {
+  getTableData: (condition) => {
     return axios.request({
       url: '/odBusiNotelog/getTableData',
-      method: 'get'
+      method: 'post',
+      data: condition
     })
   }
 }

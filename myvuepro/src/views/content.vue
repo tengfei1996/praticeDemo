@@ -1,5 +1,17 @@
 <template>
-  <Table height="1000" :columns="columnsData" :data="tableRowData"></Table>
+  <div>
+    <Table
+      height="600"
+      :columns="columnsData"
+      :data="tableRowData">
+    </Table>
+    <Page
+      @on-change="pageChange"
+      :total="total"
+      show-total
+      size="small"
+    />
+  </div>
 </template>
 
 <script>
@@ -8,6 +20,7 @@ export default {
   data () {
     return {
       tableContent,
+      total: 0,
       columnsData: [
         {
           title: 'ID',
@@ -48,7 +61,14 @@ export default {
           note: '',
           version: ''
         }
-      ]
+      ],
+      searchData: {
+        page: 1,
+        size: 10,
+        orderType: 'desc',
+        orderParam: '',
+        queryParam: {},
+      },
     }
   },
   mounted () {  //钩子函数
@@ -58,15 +78,20 @@ export default {
   },
   methods: {
     TableContentData () {
-      console.log("1234")
-      tableContent.getTableData().then((res) => {
+      console.log("TableContentData")
+      tableContent.getTableData(this.searchData).then((res) => {
         if (res.success) {
-          debugger
-          this.tableRowData = res.data
+          this.tableRowData = res.data.list,
+          this.total = res.data.total
         } else {
           this.$Message.error(res.message)
         }
       })
+    },
+    pageChange (page) {
+      console.log("pageChange")
+      this.searchData.page= page,
+      this.TableContentData()
     }
   }
 }
